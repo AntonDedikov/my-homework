@@ -1,0 +1,6 @@
+C:\Users\Anton\Desktop\my-homework\task for shop\task for shop\obj\Debug\task for shop.csprojAssemblyReference.cache
+C:\Users\Anton\Desktop\my-homework\task for shop\task for shop\bin\Debug\task for shop.exe.config
+C:\Users\Anton\Desktop\my-homework\task for shop\task for shop\bin\Debug\task for shop.exe
+C:\Users\Anton\Desktop\my-homework\task for shop\task for shop\bin\Debug\task for shop.pdb
+C:\Users\Anton\Desktop\my-homework\task for shop\task for shop\obj\Debug\task for shop.exe
+C:\Users\Anton\Desktop\my-homework\task for shop\task for shop\obj\Debug\task for shop.pdb
