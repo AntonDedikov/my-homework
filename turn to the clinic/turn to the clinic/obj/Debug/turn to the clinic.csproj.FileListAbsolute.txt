@@ -1,0 +1,6 @@
+C:\Users\Anton\Desktop\my-homework\turn to the clinic\turn to the clinic\bin\Debug\turn to the clinic.exe.config
+C:\Users\Anton\Desktop\my-homework\turn to the clinic\turn to the clinic\bin\Debug\turn to the clinic.exe
+C:\Users\Anton\Desktop\my-homework\turn to the clinic\turn to the clinic\bin\Debug\turn to the clinic.pdb
+C:\Users\Anton\Desktop\my-homework\turn to the clinic\turn to the clinic\obj\Debug\turn to the clinic.csprojAssemblyReference.cache
+C:\Users\Anton\Desktop\my-homework\turn to the clinic\turn to the clinic\obj\Debug\turn to the clinic.exe
+C:\Users\Anton\Desktop\my-homework\turn to the clinic\turn to the clinic\obj\Debug\turn to the clinic.pdb
