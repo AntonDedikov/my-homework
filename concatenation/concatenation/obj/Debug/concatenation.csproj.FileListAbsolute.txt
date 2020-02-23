@@ -1,0 +1,6 @@
+C:\Users\Anton\Desktop\my-homework\concatenation\concatenation\bin\Debug\concatenation.exe.config
+C:\Users\Anton\Desktop\my-homework\concatenation\concatenation\bin\Debug\concatenation.exe
+C:\Users\Anton\Desktop\my-homework\concatenation\concatenation\bin\Debug\concatenation.pdb
+C:\Users\Anton\Desktop\my-homework\concatenation\concatenation\obj\Debug\concatenation.csprojAssemblyReference.cache
+C:\Users\Anton\Desktop\my-homework\concatenation\concatenation\obj\Debug\concatenation.exe
+C:\Users\Anton\Desktop\my-homework\concatenation\concatenation\obj\Debug\concatenation.pdb
