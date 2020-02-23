@@ -1,0 +1,6 @@
+C:\Users\Anton\Desktop\my-homework\task with pictures\task with pictures\bin\Debug\task with pictures.exe.config
+C:\Users\Anton\Desktop\my-homework\task with pictures\task with pictures\bin\Debug\task with pictures.exe
+C:\Users\Anton\Desktop\my-homework\task with pictures\task with pictures\bin\Debug\task with pictures.pdb
+C:\Users\Anton\Desktop\my-homework\task with pictures\task with pictures\obj\Debug\task with pictures.csprojAssemblyReference.cache
+C:\Users\Anton\Desktop\my-homework\task with pictures\task with pictures\obj\Debug\task with pictures.exe
+C:\Users\Anton\Desktop\my-homework\task with pictures\task with pictures\obj\Debug\task with pictures.pdb
