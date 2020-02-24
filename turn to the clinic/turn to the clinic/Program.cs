@@ -10,19 +10,19 @@ namespace turn_to_the_clinic
     {
         static void Main(string[] args)
         {
-            int people;
+            int turnPeople;
             int serviceTime = 10;
-            int Minutes;
-            int Hours;
+            int waitMinutes;
+            int waitHours;
 
             Console.Write("Введите кол-во человек в очереди: ");
-            people = Convert.ToInt32(Console.ReadLine());
+            turnPeople = Convert.ToInt32(Console.ReadLine());
 
-            Minutes = people * serviceTime;
-            Hours = Minutes / 60;
-            Minutes = Minutes % 60;
+            waitMinutes = turnPeople * serviceTime;
+            waitHours = waitMinutes / 60;
+            waitMinutes = waitMinutes % 60;
 
-            Console.WriteLine("Время ожидания равно " + Hours + " часов " + Minutes + " минут");
+            Console.WriteLine("Время ожидания равно " + waitHours + " часов " + waitMinutes + " минут");
             Console.ReadKey();
         }
     }
