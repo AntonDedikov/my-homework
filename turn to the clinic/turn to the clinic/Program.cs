@@ -10,15 +10,15 @@ namespace turn_to_the_clinic
     {
         static void Main(string[] args)
         {
-            int turnPeople;
+            int peopleQueue;
             int serviceTime = 10;
             int waitMinutes;
             int waitHours;
 
             Console.Write("Введите кол-во человек в очереди: ");
-            turnPeople = Convert.ToInt32(Console.ReadLine());
+            peopleQueue = Convert.ToInt32(Console.ReadLine());
 
-            waitMinutes = turnPeople * serviceTime;
+            waitMinutes = peopleQueue * serviceTime;
             waitHours = waitMinutes / 60;
             waitMinutes = waitMinutes % 60;
 
