@@ -1,0 +1,6 @@
+C:\Users\Anton\Desktop\my-homework\Currency Converter\Currency Converter\bin\Debug\Currency Converter.exe.config
+C:\Users\Anton\Desktop\my-homework\Currency Converter\Currency Converter\bin\Debug\Currency Converter.exe
+C:\Users\Anton\Desktop\my-homework\Currency Converter\Currency Converter\bin\Debug\Currency Converter.pdb
+C:\Users\Anton\Desktop\my-homework\Currency Converter\Currency Converter\obj\Debug\Currency Converter.csprojAssemblyReference.cache
+C:\Users\Anton\Desktop\my-homework\Currency Converter\Currency Converter\obj\Debug\Currency Converter.exe
+C:\Users\Anton\Desktop\my-homework\Currency Converter\Currency Converter\obj\Debug\Currency Converter.pdb
