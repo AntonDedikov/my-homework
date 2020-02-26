@@ -10,24 +10,28 @@ namespace Program_with_password
     {
         static void Main(string[] args)
         {
-            string passwordForMessage = "1234";
-            string userInput;
-            int attempts = 3;
 
-            Console.WriteLine("Введите пароль:");
-            userInput = Console.ReadLine();
-            for(attempts > 0; attemps--)
+            string password = "1234";
+            int inputAttempts = 3;
+            string userInput;
+
+            while (inputAttempts-- > 0)
             {
-                if (userInput == passwordForMessage)
+                Console.Write("Введите пароль:");
+                userInput = Console.ReadLine();
+                if (userInput == "1234")
                 {
-                    Console.WriteLine("42");
+                    Console.WriteLine("Ответ: 42, Живи с этим.");
+                    Console.ReadKey();
+                    break;
                 }
                 else
                 {
-                    Console.WriteLine("Пароль не верный. Попробуйте еще раз."
-                        + "У вас осталось " + attempts + " попыток.");
+                    Console.WriteLine("У вас осталось " + inputAttempts + " попыток.");
                 }
             }
+            Console.WriteLine("Доступ заблокирован!");
+            Console.ReadKey();
         }
     }
 }
