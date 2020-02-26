@@ -1,0 +1,6 @@
+C:\Users\Anton\source\repos\Sequence\Sequence\bin\Debug\Sequence.exe.config
+C:\Users\Anton\source\repos\Sequence\Sequence\bin\Debug\Sequence.exe
+C:\Users\Anton\source\repos\Sequence\Sequence\bin\Debug\Sequence.pdb
+C:\Users\Anton\source\repos\Sequence\Sequence\obj\Debug\Sequence.csprojAssemblyReference.cache
+C:\Users\Anton\source\repos\Sequence\Sequence\obj\Debug\Sequence.exe
+C:\Users\Anton\source\repos\Sequence\Sequence\obj\Debug\Sequence.pdb
