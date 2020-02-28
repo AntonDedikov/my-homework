@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0179159C-B3F3-4824-B298-8625A61977A8}</ProjectGuid>
+    <ProjectGuid>{3C035666-4BA3-4625-BB2A-CBF7508B248E}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>game</RootNamespace>
-    <AssemblyName>game</AssemblyName>
+    <RootNamespace>game_Console_Rpg</RootNamespace>
+    <AssemblyName>game Console Rpg</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

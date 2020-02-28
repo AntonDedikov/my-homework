@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace game
+namespace game_Console_Rpg
 {
     class Program
     {
@@ -74,7 +74,7 @@ namespace game
                                 break;
                             case "2":
                                 Console.WriteLine("\nПобег");
-                                TimeInMeasurement +=2;
+                                TimeInMeasurement += 2;
                                 break;
                             case "3":
                                 Console.WriteLine("\nПризыв клона");
@@ -130,23 +130,23 @@ namespace game
 
 
 
-                 else
+                else
                 {
                     Console.WriteLine("1 - удар кинжалом");
                     userInput = Console.ReadLine();
-                    if(userInput == "1")
+                    if (userInput == "1")
                     {
                         critDamadeMirrorAssassin = rand.Next(100, 300);
                         healthCrazyAlchemist -= (damageMirrorAssassin / 100 * critDamadeMirrorAssassin)
                             / 100 * armorCrazyAlchemist;
-                        Console.WriteLine("\nАссасин нанес " + damageMirrorAssassin / 100 
+                        Console.WriteLine("\nАссасин нанес " + damageMirrorAssassin / 100
                             * critDamadeMirrorAssassin + " урона.");
                     }
                     else
                     {
                         Console.WriteLine("\nОтчаяние");
                     }
-                 }
+                }
 
 
 
@@ -170,11 +170,11 @@ namespace game
                     damageAlchemistGolem = alchemistGolem * damageAlchemistGolem;
                     if (assasinShild == true)
                     {
-                        critDamageCrazyAlchemist = rand.Next(90, 250);
+                        critDamageCrazyAlchemist = rand.Next(90, 150);
                         healthMirrorAssassin -= (((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
-                            + damageAlchemistGolem)/ 100 * armorMirrorAssassin) / 2;
+                            + damageAlchemistGolem) / 100 * armorMirrorAssassin) / 2;
                         healthCrazyAlchemist -= (((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
-                            + damageAlchemistGolem)/ 100 * armorCrazyAlchemist) / 2;
+                            + damageAlchemistGolem) / 100 * armorCrazyAlchemist) / 2;
 
                         Console.ForegroundColor = ConsoleColor.Gray;
                         Console.WriteLine("\nАлхимик нанес " + ((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
@@ -183,7 +183,7 @@ namespace game
                         assasinShild = false;
                     }
 
-                    else if(reflectionClone == true && chanceCloneTakeDamage == true)
+                    else if (reflectionClone == true && chanceCloneTakeDamage == true)
                     {
                         Console.ForegroundColor = ConsoleColor.Gray;
                         Console.WriteLine("\nАлхимик нанес " + damageCrazyAlchemist + " урона клону,  големы "
@@ -194,12 +194,12 @@ namespace game
 
                     else
                     {
-                        critDamageCrazyAlchemist = rand.Next(90, 250);
+                        critDamageCrazyAlchemist = rand.Next(90, 150);
                         healthMirrorAssassin -= ((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
                             + damageAlchemistGolem) / 100 * armorMirrorAssassin;
-                        Console.WriteLine("\nАлхимик нанес " + damageCrazyAlchemist / 100 * critDamageCrazyAlchemist 
-                            + " урона,  големы "+ damageAlchemistGolem);
-                    }       
+                        Console.WriteLine("\nАлхимик нанес " + damageCrazyAlchemist / 100 * critDamageCrazyAlchemist
+                            + " урона,  големы " + damageAlchemistGolem);
+                    }
                     Console.WriteLine("\nПризыв каменного голема");
                     alchemistGolem++;
 
@@ -212,8 +212,8 @@ namespace game
                         healthCrazyAlchemist += alchemistGolem * golemHealth;
                         damageCrazyAlchemist += alchemistGolem * damageAlchemistGolem / 2;
                         armorCrazyAlchemist -= alchemistGolem * golemArmor;
-                        Console.WriteLine("Здоровье Алхимика " + healthCrazyAlchemist 
-                            + "\nСила Алхимика " + damageCrazyAlchemist 
+                        Console.WriteLine("Здоровье Алхимика " + healthCrazyAlchemist
+                            + "\nСила Алхимика " + damageCrazyAlchemist
                             + "\nЗащита Алхимика " + (100 - armorCrazyAlchemist));
                         alchemistGolem = 0;
                     }
@@ -246,27 +246,31 @@ namespace game
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\nЖизнь Зеркального Ассасина " + healthMirrorAssassin);
-                if(reflectionClone == true)
+                if (reflectionClone == true)
                 {
                     Console.Write("Состояние клона - в бою\n");
                 }
-                else 
+                else
                 {
                     Console.WriteLine("Клон в зеркальном измерении\n");
                 }
             }
 
-
-            if(healthCrazyAlchemist < 1)
+            if (healthMirrorAssassin <= 0 && healthCrazyAlchemist <= 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\nНичья. Игра окончена");
+            }
+            else if (healthCrazyAlchemist <= 0)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("\nВы победили!");
             }
-            else if(healthMirrorAssassin < 0)
+            else if (healthMirrorAssassin <= 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nВы проиграли. Игра окончена");
-            }   
+            }
             Console.ReadKey();
         }
     }
