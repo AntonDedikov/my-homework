@@ -11,21 +11,21 @@ namespace name_output
         static void Main(string[] args)
         {
             string userName;
-            char userSimbol;
+            char userSymbol;
             string characterString = "";
 
             Console.Write("Введите имя:");
             userName = Console.ReadLine();
 
             Console.Write("Введите символ:");
-            userSimbol = Convert.ToChar(Console.ReadLine());
+            userSymbol = Convert.ToChar(Console.ReadLine());
 
             for (int i = 0; i < userName.Length + 2; i++)
             {
-                characterString += userSimbol;
+                characterString += userSymbol;
             }
             Console.WriteLine(characterString);
-            Console.WriteLine(userSimbol + userName + userSimbol);
+            Console.WriteLine(userSymbol + userName + userSymbol);
             Console.WriteLine(characterString);
             Console.ReadKey();
         }
