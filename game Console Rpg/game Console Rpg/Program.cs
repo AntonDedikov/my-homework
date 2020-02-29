@@ -10,6 +10,7 @@ namespace game_Console_Rpg
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             Random rand = new Random();
             float startHealthMirrorAssassin = 100;
             float healthMirrorAssassin = 100;
@@ -83,11 +84,11 @@ namespace game_Console_Rpg
                             case "4":
                                 Console.WriteLine("\nЩит разбит");
                                 lastBreath = true;
-                                critDamadeMirrorAssassin = rand.Next(500, 1000);
+                                critDamadeMirrorAssassin = rand.Next(500, 1500);
                                 healthCrazyAlchemist -= (damageMirrorAssassin / 100 * critDamadeMirrorAssassin)
                                     / 100 * armorCrazyAlchemist;
-                                Console.WriteLine("\nАссасин нанес " + (damageMirrorAssassin / 100
-                                    * critDamadeMirrorAssassin) + " урона и лишился сверх сил");
+                                Console.WriteLine("\nАссасин нанес " + ((damageMirrorAssassin / 100 * critDamadeMirrorAssassin)
+                                    / 100 * armorCrazyAlchemist) + " урона и лишился сверх сил");
                                 break;
                             default:
                                 Console.WriteLine("\nПроявление мазохизма");
@@ -109,8 +110,8 @@ namespace game_Console_Rpg
                                 healthCrazyAlchemist -= (damageMirrorAssassin / 100 * critDamadeMirrorAssassin)
                                     / 100 * armorCrazyAlchemist;
                                 TimeInMeasurement = 0;
-                                Console.WriteLine("Ассасин нанес " + (damageMirrorAssassin / 100
-                                    * critDamadeMirrorAssassin) + " урона.");
+                                Console.WriteLine("Ассасин нанес " + ((damageMirrorAssassin / 100 * critDamadeMirrorAssassin)
+                                    / 100 * armorCrazyAlchemist) + " урона.");
                                 break;
                             case "2":
                                 healthMirrorAssassin += healthRecovery;
@@ -139,8 +140,8 @@ namespace game_Console_Rpg
                         critDamadeMirrorAssassin = rand.Next(100, 300);
                         healthCrazyAlchemist -= (damageMirrorAssassin / 100 * critDamadeMirrorAssassin)
                             / 100 * armorCrazyAlchemist;
-                        Console.WriteLine("\nАссасин нанес " + damageMirrorAssassin / 100
-                            * critDamadeMirrorAssassin + " урона.");
+                        Console.WriteLine("\nАссасин нанес " + ((damageMirrorAssassin / 100 * critDamadeMirrorAssassin)
+                            / 100 * armorCrazyAlchemist) + " урона.");
                     }
                     else
                     {
@@ -148,98 +149,97 @@ namespace game_Console_Rpg
                     }
                 }
 
-
-
                 if (reflectionClone == true)
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     critDamadeMirrorAssassin = rand.Next(100, 300);
                     healthCrazyAlchemist -= (damageMirrorAssassin / 100 * critDamadeMirrorAssassin)
                         / 100 * armorCrazyAlchemist;
-                    Console.WriteLine("\nКлон нанес " + damageMirrorAssassin / 100
-                        * critDamadeMirrorAssassin + " урона.");
+                    Console.WriteLine("\nКлон нанес " + (damageMirrorAssassin / 100 * critDamadeMirrorAssassin)
+                        / 100 * armorCrazyAlchemist + " урона.");
                     chanceCloneTakeDamage = Convert.ToBoolean(rand.Next(0, 2));
 
                 }
 
-
-                Console.ForegroundColor = ConsoleColor.Red;
-                if (TimeInMeasurement == 0)
+                if (healthCrazyAlchemist > 0)
                 {
-                    damageAlchemistGolem = 3;
-                    damageAlchemistGolem = alchemistGolem * damageAlchemistGolem;
-                    if (assasinShild == true)
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    if (TimeInMeasurement == 0)
                     {
-                        critDamageCrazyAlchemist = rand.Next(90, 150);
-                        healthMirrorAssassin -= (((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
-                            + damageAlchemistGolem) / 100 * armorMirrorAssassin) / 2;
-                        healthCrazyAlchemist -= (((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
-                            + damageAlchemistGolem) / 100 * armorCrazyAlchemist) / 2;
+                        damageAlchemistGolem = 3;
+                        damageAlchemistGolem = alchemistGolem * damageAlchemistGolem;
+                        if (assasinShild == true)
+                        {
+                            critDamageCrazyAlchemist = rand.Next(90, 150);
+                            healthMirrorAssassin -= (((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
+                                + damageAlchemistGolem) / 100 * armorMirrorAssassin) / 2;
+                            healthCrazyAlchemist -= (((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
+                                + damageAlchemistGolem) / 100 * armorCrazyAlchemist) / 2;
 
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.WriteLine("\nАлхимик нанес " + ((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
-                            + damageAlchemistGolem) + " урона,  големы "
-                        + damageAlchemistGolem + " половина урона было отражено и возвращено");
-                        assasinShild = false;
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                            Console.WriteLine("\nАлхимик и големы нанесли " + (((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
+                                + damageAlchemistGolem) / 100 * armorMirrorAssassin)
+                                + " урона  половина урона было отражено и возвращено");
+                            assasinShild = false;
+                        }
+
+                        else if (reflectionClone == true && chanceCloneTakeDamage == true)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                            Console.WriteLine("\nАлхимик нанес " + damageCrazyAlchemist + " урона клону,  големы "
+                                + damageAlchemistGolem);
+                            Console.WriteLine("\nКлон исчез");
+                            reflectionClone = false;
+                        }
+
+                        else
+                        {
+                            critDamageCrazyAlchemist = rand.Next(90, 150);
+                            healthMirrorAssassin -= ((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
+                                + damageAlchemistGolem) / 100 * armorMirrorAssassin;
+                            Console.WriteLine("\nАлхимик и големы нанесли" + ((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
+                                + damageAlchemistGolem) / 100 * armorMirrorAssassin
+                                + " урона");
+                        }
+                        Console.WriteLine("\nПризыв каменного голема");
+                        alchemistGolem++;
+
+
+
+                        if (healthCrazyAlchemist < startHilthCrazyAlchemist / 100 * 50)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine("\nСлияние с големами");
+                            healthCrazyAlchemist += alchemistGolem * golemHealth;
+                            damageCrazyAlchemist += alchemistGolem * damageAlchemistGolem / 2;
+                            armorCrazyAlchemist -= alchemistGolem * golemArmor;
+                            Console.WriteLine("Здоровье Алхимика " + healthCrazyAlchemist
+                                + "\nСила Алхимика " + damageCrazyAlchemist
+                                + "\nЗащита Алхимика " + (100 - armorCrazyAlchemist));
+                            alchemistGolem = 0;
+                        }
                     }
 
                     else if (reflectionClone == true && chanceCloneTakeDamage == true)
                     {
                         Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.WriteLine("\nАлхимик нанес " + damageCrazyAlchemist + " урона клону,  големы "
-                            + damageAlchemistGolem);
+                        Console.WriteLine("\nАлхимик нанес " + damageCrazyAlchemist + " урона клону");
                         Console.WriteLine("\nКлон исчез");
                         reflectionClone = false;
+                        alchemistGolem++;
+                        TimeInMeasurement--;
                     }
 
-                    else
+
+                    else if (healthCrazyAlchemist >= 0)
                     {
-                        critDamageCrazyAlchemist = rand.Next(90, 150);
-                        healthMirrorAssassin -= ((damageCrazyAlchemist / 100 * critDamageCrazyAlchemist)
-                            + damageAlchemistGolem) / 100 * armorMirrorAssassin;
-                        Console.WriteLine("\nАлхимик нанес " + damageCrazyAlchemist / 100 * critDamageCrazyAlchemist
-                            + " урона,  големы " + damageAlchemistGolem);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nПризыв каменного голема");
+                        alchemistGolem++;
+                        TimeInMeasurement--;
                     }
-                    Console.WriteLine("\nПризыв каменного голема");
-                    alchemistGolem++;
 
-
-
-                    if (healthCrazyAlchemist < startHilthCrazyAlchemist / 100 * 50)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nСлияние с големами");
-                        healthCrazyAlchemist += alchemistGolem * golemHealth;
-                        damageCrazyAlchemist += alchemistGolem * damageAlchemistGolem / 2;
-                        armorCrazyAlchemist -= alchemistGolem * golemArmor;
-                        Console.WriteLine("Здоровье Алхимика " + healthCrazyAlchemist
-                            + "\nСила Алхимика " + damageCrazyAlchemist
-                            + "\nЗащита Алхимика " + (100 - armorCrazyAlchemist));
-                        alchemistGolem = 0;
-                    }
                 }
-
-                else if (reflectionClone == true && chanceCloneTakeDamage == true)
-                {
-                    Console.ForegroundColor = ConsoleColor.Gray;
-                    Console.WriteLine("\nАлхимик нанес " + damageCrazyAlchemist + " урона клону,  големы "
-                        + damageAlchemistGolem);
-                    Console.WriteLine("\nКлон исчез");
-                    reflectionClone = false;
-                    alchemistGolem++;
-                    TimeInMeasurement--;
-                }
-
-
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nПризыв каменного голема");
-                    alchemistGolem++;
-                    TimeInMeasurement--;
-                }
-
-
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\nЖизнь Безумного Алхимика " + healthCrazyAlchemist);
                 Console.WriteLine("Количество големов " + alchemistGolem);
