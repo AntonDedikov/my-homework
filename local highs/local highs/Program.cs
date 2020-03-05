@@ -13,7 +13,6 @@ namespace local_highs
 
             int[] elements = new int[30];
             Random rand = new Random();
-            int maxElement  = int.MinValue;
            
             for(int j = 0; j < elements.Length; j++)
             {
@@ -24,24 +23,21 @@ namespace local_highs
 
             if (elements[0] > elements[1])
                 {
-                    maxElement = elements[0];
-                    Console.Write(maxElement + " ");
+                    Console.Write(elements[0] + " ");
                 }
 
             for (int i = 1; i < elements.Length - 1; i++)
             {
                 if (elements[i] > elements[i - 1] && elements[i] > elements[i + 1])
                 {
-                    maxElement = elements[i];
-                    Console.Write(maxElement + " ");
+                    Console.Write(elements[i] + " ");
                 }
+            }
 
-                if (elements.Length - 2 == i && elements[i] < elements[i + 1])
-                {
-                    maxElement = elements[i + 1];
-                    Console.Write(maxElement + " ");
-                }
-            }                 
+            if (elements[elements.Length - 2] < elements[elements.Length - 1])
+            {
+                Console.Write(elements[elements.Length - 1] + " ");
+            }
             Console.ReadKey();
         }
     }
