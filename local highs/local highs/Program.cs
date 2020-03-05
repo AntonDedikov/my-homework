@@ -20,12 +20,12 @@ namespace local_highs
                 elements[j] = rand.Next(0, 100);
                 Console.Write(elements[j] + " ");
             }
-            Console.WriteLine();
+            Console.WriteLine("\n ");
 
-            if (elements[1] > elements[2])
+            if (elements[0] > elements[1])
                 {
-                    maxElement = elements[1];
-                    Console.Write("Локальные максимумы: " + maxElement + " ");
+                    maxElement = elements[0];
+                    Console.Write(maxElement + " ");
                 }
 
             for (int i = 1; i < elements.Length - 1; i++)
@@ -35,13 +35,13 @@ namespace local_highs
                     maxElement = elements[i];
                     Console.Write(maxElement + " ");
                 }
-            }
 
-            if (elements[29] > elements[28])
-            {
-                    maxElement = elements[29];
+                if (elements.Length - 2 == i && elements[i] < elements[i + 1])
+                {
+                    maxElement = elements[i + 1];
                     Console.Write(maxElement + " ");
-            }
+                }
+            }                 
             Console.ReadKey();
         }
     }
