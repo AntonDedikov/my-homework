@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace healthBar
+namespace healthBar2._0
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int health = 467, maxHealth = 1000;
+            int health = 40, maxHealth = 100;
 
             while (true)
             {
@@ -18,7 +18,7 @@ namespace healthBar
 
                 Console.SetCursorPosition(0, 5);
 
-                Console.Write("Введите число на которое изменится жизни:");
+                Console.Write("Введите процент на который изменится жизни:");
                 health += Convert.ToInt32(Console.ReadLine());
 
                 Console.ReadKey();
@@ -28,11 +28,11 @@ namespace healthBar
 
         static void DrawBar(int value, int maxValue, ConsoleColor color, int position, char symbol = ' ')
         {
-            int percentValue;
-            maxValue = maxValue / 100;
-            percentValue = value / maxValue;
-            value = percentValue / 10;
+            Console.SetCursorPosition(12, position);
+            Console.Write(" " + value + "%");
 
+            maxValue = maxValue / 10;
+            value = value / 10;
 
             ConsoleColor defoultColor = Console.BackgroundColor;
             string bar = "";
@@ -60,3 +60,4 @@ namespace healthBar
         }
     }
 }
+
