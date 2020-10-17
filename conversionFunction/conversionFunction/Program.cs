@@ -10,23 +10,20 @@ namespace conversionFunction
     {
         static void Main(string[] args)
         {
-            bool correctlyInput;
-            int inputConvert;
-
+            ConvertToInt(out int inputConvert);
+            Console.WriteLine("число " + inputConvert + " успешно сконвертировано");
+            Console.ReadKey();
+        }
+        static void ConvertToInt(out int inputConvert)
+        {
+            bool correctlyInput = true;
             do
             {
                 Console.Write("Впишите число для конвертации:");
                 string userInput = Console.ReadLine();
-                ConvertatorInt(userInput, out correctlyInput, out inputConvert);
+                correctlyInput = int.TryParse(userInput, out inputConvert);
                 Console.Clear();
             } while (correctlyInput == false);
-
-            Console.WriteLine("число " + inputConvert + " успешно сконвертировано");
-            Console.ReadKey();
-        }
-        static void ConvertatorInt(string x, out bool y, out int z)
-        {
-            y = int.TryParse(x, out z);
         }
     }
 }
