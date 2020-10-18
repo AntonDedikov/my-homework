@@ -12,8 +12,6 @@ namespace Dynamic_array
         {
             bool isOpen = true;
             int[] numbers = new int[0];
-            int userImput;
-            int sum = 0;
 
             while (isOpen)
             {
@@ -34,6 +32,7 @@ namespace Dynamic_array
                 switch (Console.ReadLine())
                 {
                     case "input":
+                        int userImput;
                         Console.Write("Введите число: ");
                         userImput = Convert.ToInt32(Console.ReadLine());
                         int[] tempNumbers = new int[numbers.Length + 1];
@@ -45,6 +44,7 @@ namespace Dynamic_array
                         numbers = tempNumbers;
                         break;
                     case "sum":
+                        int sum = 0;
                         for (int i = 0; i < numbers.Length; i++)
                         {
                             sum += numbers[i];
