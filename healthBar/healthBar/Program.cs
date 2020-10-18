@@ -11,38 +11,42 @@ namespace healthBar2._0
         static void Main(string[] args)
         {
             int health = 40, maxHealth = 100;
+            int userInputProcent = 0;
 
             while (true)
             {
-                DrawBar(health, maxHealth, ConsoleColor.Red, 0, '#');
+                DrawBar(ref health, maxHealth, userInputProcent, ConsoleColor.Red, 0, '#');
 
                 Console.SetCursorPosition(0, 5);
 
                 Console.Write("Введите процент на который изменится жизни:");
-                health += Convert.ToInt32(Console.ReadLine());
+                userInputProcent = Convert.ToInt32(Console.ReadLine());
 
                 Console.ReadKey();
                 Console.Clear();
             }
         }
 
-        static void DrawBar(int value, int maxValue, ConsoleColor color, int position, char symbol = ' ')
+        static void DrawBar(ref int value, int maxValue, int inputProcentValue, ConsoleColor color, int position, char symbol = ' ')
         {
-            Console.SetCursorPosition(12, position);
-            Console.Write(" " + value + "%");
+            int DrawnMaxProcent = 10, DrawnProcent, oneProcent;
 
-            maxValue = maxValue / 10;
-            value = value / 10;
+            oneProcent = maxValue / 100;
+            value += oneProcent * inputProcentValue;
+            DrawnProcent = value / oneProcent;
+
+            Console.SetCursorPosition(12, position);
+            Console.Write($" {DrawnProcent}%");
+
+            DrawnProcent /= 10;
 
             ConsoleColor defoultColor = Console.BackgroundColor;
             string bar = "";
 
-
-            for (int i = 0; i < value; i++)
+            for (int i = 0; i < DrawnProcent; i++)
             {
                 bar += symbol;
             }
-
 
             Console.SetCursorPosition(0, position);
             Console.Write('[');
@@ -50,9 +54,8 @@ namespace healthBar2._0
             Console.Write(bar);
             Console.BackgroundColor = defoultColor;
 
-
             bar = "";
-            for (int i = value; i < maxValue; i++)
+            for (int i = DrawnProcent; i < DrawnMaxProcent; i++)
             {
                 bar += '_';
             }
