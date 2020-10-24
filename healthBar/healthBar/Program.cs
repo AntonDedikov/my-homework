@@ -10,7 +10,7 @@ namespace healthBar2._0
     {
         static void Main(string[] args)
         {
-            int maxHealth = 50000, userInputProcent = 0;
+            int maxHealth = 100, userInputProcent = 0;
 
             while (true)
             {
