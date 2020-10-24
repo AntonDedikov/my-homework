@@ -10,7 +10,7 @@ namespace healthBar2._0
     {
         static void Main(string[] args)
         {
-            int maxHealth = 100, userInputProcent = 0;
+            int maxHealth = 50000, userInputProcent = 0;
 
             while (true)
             {
@@ -28,20 +28,19 @@ namespace healthBar2._0
 
         static void DrawBar(int maxValue, int inputProcentValue, ConsoleColor color, int position, char symbol = ' ')
         {
-            int DrawnProcent, oneProcent, barLength = 10;
+            int drawnProcent, oneProcent, barLength = 10, valueHealth;
 
             oneProcent = maxValue / 100;
-            DrawnProcent = inputProcentValue / oneProcent;
+            valueHealth = inputProcentValue * oneProcent;
+            drawnProcent = inputProcentValue / barLength;
 
             Console.SetCursorPosition(12, position);
-            Console.Write($" {DrawnProcent}%");
-
-            DrawnProcent /= barLength;
+            Console.Write($" {valueHealth}hp");
 
             ConsoleColor defoultColor = Console.BackgroundColor;
             string bar = "";
 
-            for (int i = 0; i < DrawnProcent; i++)
+            for (int i = 0; i < drawnProcent; i++)
             {
                 bar += symbol;
             }
@@ -53,7 +52,7 @@ namespace healthBar2._0
             Console.BackgroundColor = defoultColor;
 
             bar = "";
-            for (int i = DrawnProcent; i < barLength; i++)
+            for (int i = drawnProcent; i < barLength; i++)
             {
                 bar += '_';
             }
