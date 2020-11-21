@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "drawMap", "drawMap\drawMap.csproj", "{2DB38307-BE1F-4BC3-899D-C24BE2F2A505}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DB38307-BE1F-4BC3-899D-C24BE2F2A505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DB38307-BE1F-4BC3-899D-C24BE2F2A505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DB38307-BE1F-4BC3-899D-C24BE2F2A505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DB38307-BE1F-4BC3-899D-C24BE2F2A505}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D4DEC02-F298-4263-9827-FA9F26329DF6}
+	EndGlobalSection
+EndGlobal

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace healthBar2._0
+namespace healthBar
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int maxHealth = 100, userInputProcent = 0;
+            int maxHealth = 500, userInputProcent = 0;
 
             while (true)
             {
@@ -34,7 +34,7 @@ namespace healthBar2._0
             valueHealth = inputProcentValue * oneProcent;
             drawnProcent = inputProcentValue / barLength;
 
-            Console.SetCursorPosition(12, position);
+            Console.SetCursorPosition(12, position + 1);
             Console.Write($" {valueHealth}hp");
 
             ConsoleColor defoultColor = Console.BackgroundColor;
