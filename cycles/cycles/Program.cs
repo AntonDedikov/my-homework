@@ -11,14 +11,14 @@ namespace cycles
         static void Main(string[] args)
         {
             string userInput;
-            int repeatNumber;
+            int repeatMessage;
 
             Console.WriteLine("Впишите сообщение:");
             userInput = Console.ReadLine();
             Console.WriteLine("Сколько раз повторить:");
-            repeatNumber = Convert.ToInt32(Console.ReadLine());
+            repeatMessage = Convert.ToInt32(Console.ReadLine());
 
-            for (int i = 0; i < repeatNumber; i++)
+            for (int i = 0; i < repeatMessage; i++)
             {
                 Console.WriteLine(userInput);
             }
