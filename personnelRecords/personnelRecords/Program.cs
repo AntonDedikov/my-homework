@@ -27,13 +27,19 @@ namespace personnelRecords
                 switch (Console.ReadLine())
                 {
                     case "add":
-                        AddDossier(ref fullNames, ref post);
+                        Console.WriteLine("Впишите ФИО сотрудника:");
+                        AddDossier(ref fullNames);
+                        Console.WriteLine("Впишите должность нового сотрудника ");
+                        AddDossier(ref post);
                         break;
                     case "display":
                         ShowDossier(fullNames, post);
                         break;
                     case "delete":
-                        deleteDossier(ref fullNames, ref post);
+                        Console.Write("Введите номер досье которое хотите удалить:");
+                        int indexDelete = Convert.ToInt32(Console.ReadLine());
+                        DeleteDossier(ref fullNames, indexDelete);
+                        DeleteDossier(ref post, indexDelete);
                         break;
                     case "search":
                         FindByName(fullNames, post);
@@ -46,27 +52,16 @@ namespace personnelRecords
                 Console.Clear();
             }
         }
-        static void AddDossier(ref string[] newName, ref string[] newPost)
+        static void AddDossier(ref string[] dataWorker)
         {
-            Console.WriteLine("Впишите ФИО сотрудника:");
-            string[] tempArray = new string[newName.Length + 1];
+            string[] tempArray = new string[dataWorker.Length + 1];
 
-            for (int i = 0; i < newName.Length; i++)
+            for (int i = 0; i < dataWorker.Length; i++)
             {
-                tempArray[i] = newName[i];
+                tempArray[i] = dataWorker[i];
             }
             tempArray[tempArray.Length - 1] = Console.ReadLine();
-            newName = tempArray;
-
-            Console.WriteLine("Впишите должность нового сотрудника ");
-            string[] tempArray2 = new string[newPost.Length + 1];
-
-            for (int i = 0; i < newPost.Length; i++)
-            {
-                tempArray2[i] = newPost[i];
-            }
-            tempArray2[tempArray2.Length - 1] = Console.ReadLine();
-            newPost = tempArray2;
+            dataWorker = tempArray;
         }
         static void ShowDossier(string[] name, string[] post)
         {
@@ -75,29 +70,22 @@ namespace personnelRecords
                 Console.WriteLine($"{i + 1} {name[i]} - {post[i]}");
             }
         }
-        static void deleteDossier(ref string[] name, ref string[] post)
+        static void DeleteDossier(ref string[] dataWorker, int indexDelete)
         {
-            Console.Write("Введите номер досье которое хотите удалить:");
-            int indexDelete = Convert.ToInt32(Console.ReadLine());
-            string[] tempArrayName = new string[name.Length - 1];
-            string[] tempArrayPost = new string[post.Length - 1];
-
+            string[] tempArrayName = new string[dataWorker.Length - 1];
             for (int i = 0, j = 0; i < tempArrayName.Length; i++, j++)
             {
                 if (i == indexDelete - 1)
                 {
                     j++;
-                    tempArrayName[i] = name[j];
-                    tempArrayPost[i] = post[j];
+                    tempArrayName[i] = dataWorker[j];
                 }
                 else
                 {
-                    tempArrayName[i] = name[j];
-                    tempArrayPost[i] = name[j];
+                    tempArrayName[i] = dataWorker[j];
                 }
             }
-            name = tempArrayName;
-            post = tempArrayPost;
+            dataWorker = tempArrayName;   
         }
         static void FindByName(string[] name, string[] post)
         {
