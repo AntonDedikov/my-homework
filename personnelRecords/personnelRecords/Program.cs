@@ -78,14 +78,10 @@ namespace personnelRecords
                 if (i == indexDelete - 1)
                 {
                     j++;
-                    tempArrayName[i] = dataWorker[j];
                 }
-                else
-                {
                     tempArrayName[i] = dataWorker[j];
-                }
             }
-            dataWorker = tempArrayName;   
+            dataWorker = tempArrayName;
         }
         static void FindByName(string[] name, string[] post)
         {
@@ -94,19 +90,15 @@ namespace personnelRecords
 
             for (int i = 0; i < name.Length; i++)
             {
-                for (int j = 0; j < requestName.Length; j++)
+                string[] surname = name[i].Split(' ');
+                if(surname[0] == requestName)
                 {
-                    if (requestName[j] != name[i][j])
-                    {
-                        ++i;
-                        j = 0;
-                    }
-                    if (j == requestName.Length - 1)
-                    {
-                        Console.WriteLine($"Должность сотрудника - {post[i]}");
-                    }
+                    Console.WriteLine($"Должность сотрудника - {post[i]}");
                 }
-                break;
+                else if (i == name.Length - 1)
+                {
+                    Console.WriteLine("сотрудник не найден");
+                }
             }
         }
     }
