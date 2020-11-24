@@ -29,8 +29,9 @@ namespace shuffle
             {
                 int randIndex = rand.Next(0,array.Length);
                 int randIndex2 = rand.Next(0,array.Length);
+                int tempNamber = array[randIndex];
                 array[randIndex] = array[randIndex2];
-                array[randIndex2] = array[randIndex];
+                array[randIndex2] = tempNamber;
             }
         }
         static void WriteNamberArray(int[] array)
