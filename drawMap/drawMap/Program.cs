@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace drawMap
 {
@@ -10,116 +6,140 @@ namespace drawMap
     {
         static void Main(string[] args)
         {
-            bool isOpen = true;
+            int characterX = 0, characterY = 0;
+            int characterDX = 0, characterDY = 0;
+            bool isPlaying = true;
+            bool isDrawing = false;
 
-            string[] fullNames = new string[0];
-            string[] post = new string[0];
+            char[,] map = new char[,]
+             {
+                {'#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
+                {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
+                {'#',' ','@',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
+                {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
+                {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
+                {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
+                {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
+                {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
+                {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
+                {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
+                {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
+                {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
+                {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
+                {'#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
+            };
 
-            while (isOpen)
+            Console.SetCursorPosition(20,1);
+            Console.WriteLine("Нажмите E чтобы сменить режим");
+
+            Console.SetCursorPosition(20, 3);
+            Console.WriteLine("Нажмите 1 чтобы стереть");
+
+            Console.SetCursorPosition(20, 5);
+            Console.WriteLine("Нажмите 3 чтобы поставить стену");
+
+            Console.SetCursorPosition(0,0);
+            DisplayMap(map, ref characterX, ref characterY);
+            Console.CursorVisible = false;
+
+            while (isPlaying == true)
             {
-                Console.WriteLine("add - Добавить досье");
-                Console.WriteLine("display - вывести все досье");
-                Console.WriteLine("delete - удалить досье");
-                Console.WriteLine("search - поиск по фамилии");
-                Console.WriteLine("exit - выход");
-                Console.Write("Введите команду:");
-
-                switch (Console.ReadLine())
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                ChangeDirection(key, ref characterDX, ref characterDY);
+                if (map[characterX + characterDX, characterY + characterDY] != '#' || isDrawing == true)
                 {
-                    case "add":
-                        AddDossier(ref fullNames, ref post);
-                        break;
-                    case "display":
-                        ShowDossier(fullNames, post);
-                        break;
-                    case "delete":
-                        deleteDossier(ref fullNames, ref post);
-                        break;
-                    case "search":
-                        FindByName(fullNames, post);
-                        break;
-                    case "exit":
-                        isOpen = false;
-                        break;
+                    Move(ref characterX, ref characterY, characterDX, characterDY, isDrawing);
                 }
-                Console.ReadKey();
-                Console.Clear();
-            }
-        }
-        static void AddDossier(ref string[] newName, ref string[] newPost)
-        {
-            Console.WriteLine("Впишите ФИО сотрудника:");
-            string[] tempArray = new string[newName.Length + 1];
 
-            for (int i = 0; i < newName.Length; i++)
-            {
-                tempArray[i] = newName[i];
-            }
-            tempArray[tempArray.Length - 1] = Console.ReadLine();
-            newName = tempArray;
+                ChangeMode(key, ref isDrawing);
 
-            Console.WriteLine("Впишите должность нового сотрудника ");
-            string[] tempArray2 = new string[newPost.Length + 1];
-
-            for (int i = 0; i < newPost.Length; i++)
-            {
-                tempArray2[i] = newPost[i];
-            }
-            tempArray2[tempArray2.Length - 1] = Console.ReadLine();
-            newPost = tempArray2;
-        }
-        static void ShowDossier(string[] name, string[] post)
-        {
-            for (int i = 0; i < name.Length; i++)
-            {
-                Console.WriteLine($"{i + 1} {name[i]} - {post[i]}");
-            }
-        }
-        static void deleteDossier(ref string[] name, ref string[] post)
-        {
-            Console.Write("Введите номер досье которое хотите удалить:");
-            int indexDelete = Convert.ToInt32(Console.ReadLine());
-            string[] tempArrayName = new string[name.Length - 1];
-            string[] tempArrayPost = new string[post.Length - 1];
-
-            for (int i = 0, j = 0; i < tempArrayName.Length; i++, j++)
-            {
-                if (i == indexDelete - 1)
+                if (isDrawing == true)
                 {
-                    j++;
-                    tempArrayName[i] = name[j];
-                    tempArrayPost[i] = post[j];
+                    EnableTools(key, ref map, ref characterX, ref characterY);
+                }
+            }
+        }
+        static void DisplayMap(char[,] map, ref int X, ref int Y)
+        {
+            for (int i = 0; i < map.GetLength(0); i++)
+            {
+                for (int j = 0; j < map.GetLength(1); j++)
+                {
+                    if (map[i, j] == '@')
+                    {
+                        X = i;
+                        Y = j;
+                    }
+                    Console.Write(map[i, j]);
+                }
+                Console.WriteLine();
+            }
+        }
+        static void ChangeDirection(ConsoleKeyInfo key, ref int DX, ref int DY)
+        {
+            switch (key.Key)
+            {
+                case ConsoleKey.UpArrow:
+                    DX = -1; DY = 0;
+                    break;
+                case ConsoleKey.DownArrow:
+                    DX = 1; DY = 0;
+                    break;
+                case ConsoleKey.LeftArrow:
+                    DX = 0; DY = -1;
+                    break;
+                case ConsoleKey.RightArrow:
+                    DX = 0; DY = 1;
+                    break;
+            }
+        }
+        static void Move(ref int X, ref int Y, int DX, int DY, bool isDrawing)
+        {
+            Console.SetCursorPosition(Y, X);
+            if (isDrawing != true)
+            {
+                Console.Write(' ');
+            }
+            X += DX;
+            Y += DY;
+            Console.SetCursorPosition(Y, X);
+            if (isDrawing != true)
+            {
+                Console.Write('@');
+            }
+        }
+        static void ChangeMode(ConsoleKeyInfo key, ref bool isDrawing)
+        {
+            if (key.Key == ConsoleKey.E)
+            {
+                if (isDrawing == false)
+                {
+                    Console.CursorVisible = true;
+                    isDrawing = true;
                 }
                 else
                 {
-                    tempArrayName[i] = name[j];
-                    tempArrayPost[i] = name[j];
+                    Console.CursorVisible = false;
+                    isDrawing = false;
                 }
             }
-            name = tempArrayName;
-            post = tempArrayPost;
         }
-        static void FindByName(string[] name, string[] post)
+        static void EnableTools(ConsoleKeyInfo key, ref char[,] map, ref int X, ref int Y)
         {
-            Console.WriteLine("Введите фамилию:");
-            string requestName = Console.ReadLine();
-
-            for (int i = 0; i < name.Length; i++)
+            switch (key.Key)
             {
-                for (int j = 0; j < requestName.Length; j++)
-                {
-                    if (requestName[j] != name[i][j])
-                    {
-                        ++i;
-                        j = 0;
-                    }
-                    if (j == requestName.Length - 1)
-                    {
-                        Console.WriteLine($"Должность сотрудника - {post[i]}");
-                    }
-                }
-                break;
+                case ConsoleKey.D1:
+                    Console.SetCursorPosition(Y, X);
+                    map[X, Y] = ' ';
+                    Console.Write(' ');
+                    break;
+                case ConsoleKey.D3:
+                    Console.SetCursorPosition(Y, X);
+                    map[X, Y] = '#';
+                    Console.Write('#');
+                    break;
             }
         }
     }
+
 }
