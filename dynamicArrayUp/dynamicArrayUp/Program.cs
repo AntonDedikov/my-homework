@@ -23,12 +23,12 @@ namespace dynamicArrayUp
                 switch (Console.ReadLine())
                 {
                     case "input":
-                        int inputConvert;
-                        ConvertToInt(out inputConvert);
-                        numbers.Add(inputConvert);
+                        int userInput;
+                        TakeNumber(out userInput);
+                        numbers.Add(userInput);
                         break;
                     case "sum":
-                        SumUp(numbers);
+                        DisplaySum(numbers);
                         break;
                     case "exit":
                         isOpen = false;
@@ -37,7 +37,7 @@ namespace dynamicArrayUp
                 Console.Clear();
             }
         }
-        static void ConvertToInt(out int inputConvert)
+        static void TakeNumber(out int inputConvert)
         {
             bool correctlyInput = true;
             do
@@ -47,7 +47,7 @@ namespace dynamicArrayUp
                 correctlyInput = int.TryParse(userInput, out inputConvert);
             } while (correctlyInput == false);
         }
-        static void SumUp(List<int> numbers)
+        static void DisplaySum(List<int> numbers)
         {
             int sum = 0;
             for (int i = 0; i < numbers.Count; i++)
