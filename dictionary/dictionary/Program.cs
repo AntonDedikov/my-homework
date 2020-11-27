@@ -22,14 +22,8 @@ namespace dictionary
                 string userInput = Console.ReadLine();
 
                 if (words.ContainsKey(userInput))
-                {
-                    foreach (var word in words)
-                    {
-                        if (word.Key == userInput)
-                        {
-                            Console.WriteLine(word.Value);
-                        }
-                    }
+                {     
+                            Console.WriteLine(words[userInput]);
                 }
                 else
                 {
