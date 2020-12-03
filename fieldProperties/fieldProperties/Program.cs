@@ -13,11 +13,12 @@ namespace fieldProperties
             Player player = new Player(2, 2);
             Renderer renderer = new Renderer();
 
-            renderer.DrowPlayer(player.X, player.Y, '@');
+            renderer.DrawPlayer(player.X, player.Y, '@');
             Console.ReadKey();
         }
 
     }
+
     class Player
     {
         public int X { get; private set; }
@@ -29,12 +30,13 @@ namespace fieldProperties
             Y = y;
         }
     }
+
     class Renderer
     {
-        public void DrowPlayer(int x, int y, char playerSimbol)
+        public void DrawPlayer(int x, int y, char playerSymbol)
         {
             Console.SetCursorPosition(x, y);
-            Console.Write(playerSimbol);
+            Console.Write(playerSymbol);
         }
     }
 }
