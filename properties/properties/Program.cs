@@ -31,7 +31,7 @@ namespace properties
             {
                 return X;
             }
-            set 
+            private set 
             {
                 if(value > 0 && value < 100)
                 {
@@ -44,8 +44,8 @@ namespace properties
             get
             {
                 return X;
-            } 
-            set
+            }
+            private set
             {
                 if(value > 0 && value < 100)
                 {
