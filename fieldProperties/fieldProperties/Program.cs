@@ -16,21 +16,17 @@ namespace fieldProperties
             renderer.DrawPlayer(player.X, player.Y, '@');
             Console.ReadKey();
         }
-
     }
-
     class Player
     {
         public int X { get; private set; }
         public int Y { get; private set; }
-
         public Player(int x, int y)
         {
             X = x;
             Y = y;
         }
     }
-
     class Renderer
     {
         public void DrawPlayer(int x, int y, char playerSymbol)
