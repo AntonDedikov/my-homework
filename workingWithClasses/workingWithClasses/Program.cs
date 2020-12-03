@@ -13,28 +13,29 @@ namespace workingWithClasses
             Console.Write(" Введите имя:");
             string name = Console.ReadLine(); 
 
-            Player player1 = new Player(name);
+            Player player = new Player(name);
 
-            player1.ShowInfo();
+            player.ShowInfo();
             Console.ReadKey();
         }
         class Player
         {
-            string Name;
-            int Health;
-            int Spead;
-            int Damage;
+            private string _name;
+            private int _health;
+            private int _speed;
+            private int _damage;
+
             public Player(string name)
             {
-                Name = name;
-                Health = 100;
-                Spead = 5;
-                Damage = 10;
+                _name = name;
+                _health = 100;
+                _speed = 5;
+                _damage = 10;
             }
 
             public void ShowInfo()
             {
-                Console.WriteLine($" Имя игрока = {Name}\n Жизни = {Health}\n Скорость = {Spead}\n Урон = {Damage}\n");
+                Console.WriteLine($" Имя игрока = {_name}\n Жизни = {_health}\n Скорость = {_speed}\n Урон = {_damage}\n");
             }
         }
     }
