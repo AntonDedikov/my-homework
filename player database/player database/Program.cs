@@ -12,13 +12,13 @@ namespace player_database
         {
             bool isOpen = true;
 
-            DataBase dataBase = new DataBase();
+            Database database = new Database();
 
             while (isOpen)
             {
                 Console.SetCursorPosition(20, 1);
                 Console.WriteLine("База данных");
-                dataBase.ShowPlayers();
+                database.ShowPlayers();
 
                 Console.SetCursorPosition(3, 16);
                 Console.WriteLine("Доступные команды:\n" +
@@ -26,23 +26,47 @@ namespace player_database
                     "2 - Забанить\n" +
                     "3 - Разбанить\n" +
                     "4 - Удалить");
-                ConsoleKeyInfo key = Console.ReadKey();
-                if (key.Key == ConsoleKey.NumPad1)
+                int convertNumber;
+
+                ConsoleKeyInfo key = Console.ReadKey(true);
+
+                switch (key.Key)
                 {
-                    dataBase.AddPlayer();
-                }
-                else
-                {
-                    dataBase.GetPlayer(key);
+                    case ConsoleKey.NumPad1:
+                        database.AddPlayer();
+                        break;
+                    case ConsoleKey.NumPad2:
+                        ConvertToInt(out convertNumber);
+                        database.BanPlayer(convertNumber);
+                        break;
+                    case ConsoleKey.NumPad3:
+                        ConvertToInt(out convertNumber);
+                        database.UnBanPlayer(convertNumber);
+                        break;
+                    case ConsoleKey.NumPad4:
+                        ConvertToInt(out convertNumber);
+                        database.DeletePlayer(convertNumber);
+                        break;
                 }
                 Console.Clear();
             }
         }
+
+        static void ConvertToInt(out int convertNumber)
+        {
+            bool correctlyInput = true;
+            do
+            {
+                Console.Write("Введите номер игрока:");
+                string userInput = Console.ReadLine();
+                correctlyInput = int.TryParse(userInput, out convertNumber);
+            } while (correctlyInput == false);
+        }
     }
 
-    class DataBase
+    class Database
     {
-        private List<Player> players = new List<Player>();
+        private List<Player> _players = new List<Player>();
 
         public void AddPlayer()
         {
@@ -51,36 +75,55 @@ namespace player_database
             Console.WriteLine("Введите ник игрока:");
             string nickName = Console.ReadLine();
             int level = random.Next(0, 81);
-            bool ban = false;
+            bool isBanned = false;
 
-            players.Add(new Player(nickName, level, ban));
+            _players.Add(new Player(nickName, level, isBanned));
         }
 
-        public void GetPlayer(ConsoleKeyInfo key)
+        private bool TryGetPlayer(int number)
         {
-            Console.WriteLine("Введите порядковый номер игрока:");
-            int PlayerNumber = Convert.ToInt32(Console.ReadLine());
-
-            switch (key.Key)
+            if(_players.Count > number && number >= 0)
             {
-                case ConsoleKey.NumPad2:
-                    players[PlayerNumber].BanPlayer();
-                    break;
-                case ConsoleKey.NumPad3:
-                    players[PlayerNumber].UnBanPlayer();
-                    break;
-                case ConsoleKey.NumPad4:
-                    players.RemoveAt(PlayerNumber);
-                    break;
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Игрок не найден");
+                Console.ReadKey();
+                return false;
+            }
+        }
+
+        public void BanPlayer(int number)
+        {
+            if (TryGetPlayer(number) == true)
+            {
+                _players[number].Ban();
+            }
+        }
+        public void UnBanPlayer(int number)
+        {
+            if (TryGetPlayer(number) == true)
+            {
+                _players[number].UnBan();
+            }
+           
+        }
+
+        public void DeletePlayer(int number)
+        {
+            if (TryGetPlayer(number) == true)
+            {
+                _players.RemoveAt(number);
             }
         }
 
         public void ShowPlayers()
         {
-            for (int i = 0; i < players.Count; i++)
+            for (int i = 0; i < _players.Count; i++)
             {
                 Console.Write(i);
-                players[i].ShowInfo();
+                _players[i].ShowInfo();
             }
         }
     }
@@ -89,28 +132,28 @@ namespace player_database
     {
         private string _nickname;
         private int _level;
-        private bool _ban;
+        private bool _isBanned;
 
-        public Player(string nickName, int level, bool ban)
+        public Player(string nickName, int level, bool isBanned)
         {
             _nickname = nickName;
             _level = level;
-            _ban = ban;
+            _isBanned = isBanned;
         }
 
-        public void BanPlayer()
+        public void Ban()
         {
-            _ban = true;
+            _isBanned = true;
         }
 
-        public void UnBanPlayer()
+        public void UnBan()
         {
-            _ban = false;
+            _isBanned = false;
         }
 
         public void ShowInfo()
         {
-            Console.WriteLine($" Игрок - {_nickname} уровень - {_level} бан - {_ban}");
+            Console.WriteLine($" Игрок - {_nickname} уровень - {_level} бан - {_isBanned}");
         }
     }
 }
