@@ -80,19 +80,6 @@ namespace player_database
             _players.Add(new Player(nickName, level, isBanned));
         }
 
-        private bool TryGetPlayer(int number)
-        {
-            if(_players.Count > number && number >= 0)
-            {
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("Игрок не найден");
-                Console.ReadKey();
-                return false;
-            }
-        }
 
         public void BanPlayer(int number)
         {
@@ -101,6 +88,7 @@ namespace player_database
                 _players[number].Ban();
             }
         }
+
         public void UnBanPlayer(int number)
         {
             if (TryGetPlayer(number) == true)
@@ -124,6 +112,20 @@ namespace player_database
             {
                 Console.Write(i);
                 _players[i].ShowInfo();
+            }
+        }
+
+        private bool TryGetPlayer(int number)
+        {
+            if(_players.Count > number && number >= 0)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Игрок не найден");
+                Console.ReadKey();
+                return false;
             }
         }
     }
