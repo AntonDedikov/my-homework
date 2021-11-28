@@ -26,7 +26,7 @@ namespace player_database
                     "2 - Забанить\n" +
                     "3 - Разбанить\n" +
                     "4 - Удалить");
-                int convertNumber;
+                int userInput;
 
                 ConsoleKeyInfo key = Console.ReadKey(true);
 
@@ -36,31 +36,35 @@ namespace player_database
                         database.AddPlayer();
                         break;
                     case ConsoleKey.NumPad2:
-                        ConvertToInt(out convertNumber);
-                        database.BanPlayer(convertNumber);
+                        userInput = CheckNumber();
+                        database.BanPlayer(userInput);
                         break;
                     case ConsoleKey.NumPad3:
-                        ConvertToInt(out convertNumber);
-                        database.UnBanPlayer(convertNumber);
+                        userInput = CheckNumber();
+                        database.UnBanPlayer(userInput);
                         break;
                     case ConsoleKey.NumPad4:
-                        ConvertToInt(out convertNumber);
-                        database.DeletePlayer(convertNumber);
+                        userInput = CheckNumber();
+                        database.DeletePlayer(userInput);
                         break;
                 }
                 Console.Clear();
             }
         }
 
-        static void ConvertToInt(out int convertNumber)
+        static int CheckNumber()
         {
             bool correctlyInput = true;
+
             do
             {
+                int convertNumber;
                 Console.Write("Введите номер игрока:");
                 string userInput = Console.ReadLine();
                 correctlyInput = int.TryParse(userInput, out convertNumber);
-            } while (correctlyInput == false);
+                return convertNumber;
+            }
+            while (correctlyInput == false);
         }
     }
 
@@ -80,10 +84,9 @@ namespace player_database
             _players.Add(new Player(nickName, level, isBanned));
         }
 
-
         public void BanPlayer(int number)
         {
-            if (TryGetPlayer(number) == true)
+            if (CheckPlaersIndex(number) == true)
             {
                 _players[number].Ban();
             }
@@ -91,16 +94,15 @@ namespace player_database
 
         public void UnBanPlayer(int number)
         {
-            if (TryGetPlayer(number) == true)
+            if (CheckPlaersIndex(number) == true)
             {
                 _players[number].UnBan();
             }
-           
         }
 
         public void DeletePlayer(int number)
         {
-            if (TryGetPlayer(number) == true)
+            if (CheckPlaersIndex(number) == true)
             {
                 _players.RemoveAt(number);
             }
@@ -115,9 +117,9 @@ namespace player_database
             }
         }
 
-        private bool TryGetPlayer(int number)
+        private bool CheckPlaersIndex(int number)
         {
-            if(_players.Count > number && number >= 0)
+            if (_players.Count > number && number >= 0)
             {
                 return true;
             }
