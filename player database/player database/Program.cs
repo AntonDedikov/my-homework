@@ -36,15 +36,15 @@ namespace player_database
                         database.AddPlayer();
                         break;
                     case ConsoleKey.NumPad2:
-                        userInput = CheckNumber();
+                        userInput = GetNumber();
                         database.BanPlayer(userInput);
                         break;
                     case ConsoleKey.NumPad3:
-                        userInput = CheckNumber();
+                        userInput = GetNumber();
                         database.UnBanPlayer(userInput);
                         break;
                     case ConsoleKey.NumPad4:
-                        userInput = CheckNumber();
+                        userInput = GetNumber();
                         database.DeletePlayer(userInput);
                         break;
                 }
@@ -52,7 +52,7 @@ namespace player_database
             }
         }
 
-        static int CheckNumber()
+        static int GetNumber()
         {
             bool correctlyInput = true;
 
@@ -86,7 +86,7 @@ namespace player_database
 
         public void BanPlayer(int number)
         {
-            if (CheckPlaersIndex(number) == true)
+            if (GetPlaersIndex(number) == true)
             {
                 _players[number].Ban();
             }
@@ -94,7 +94,7 @@ namespace player_database
 
         public void UnBanPlayer(int number)
         {
-            if (CheckPlaersIndex(number) == true)
+            if (GetPlaersIndex(number) == true)
             {
                 _players[number].UnBan();
             }
@@ -102,7 +102,7 @@ namespace player_database
 
         public void DeletePlayer(int number)
         {
-            if (CheckPlaersIndex(number) == true)
+            if (GetPlaersIndex(number) == true)
             {
                 _players.RemoveAt(number);
             }
@@ -117,7 +117,7 @@ namespace player_database
             }
         }
 
-        private bool CheckPlaersIndex(int number)
+        private bool GetPlaersIndex(int number)
         {
             if (_players.Count > number && number >= 0)
             {
