@@ -86,7 +86,7 @@ namespace player_database
 
         public void BanPlayer(int number)
         {
-            if (GetPlaersIndex(number) == true)
+            if (CheckIdexInList(number) == true)
             {
                 _players[number].Ban();
             }
@@ -94,7 +94,7 @@ namespace player_database
 
         public void UnBanPlayer(int number)
         {
-            if (GetPlaersIndex(number) == true)
+            if (CheckIdexInList(number) == true)
             {
                 _players[number].UnBan();
             }
@@ -102,7 +102,7 @@ namespace player_database
 
         public void DeletePlayer(int number)
         {
-            if (GetPlaersIndex(number) == true)
+            if (CheckIdexInList(number) == true)
             {
                 _players.RemoveAt(number);
             }
@@ -117,7 +117,7 @@ namespace player_database
             }
         }
 
-        private bool GetPlaersIndex(int number)
+        private bool CheckIdexInList(int number)
         {
             if (_players.Count > number && number >= 0)
             {
