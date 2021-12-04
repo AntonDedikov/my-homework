@@ -54,17 +54,16 @@ namespace player_database
 
         static int GetNumber()
         {
-            bool correctlyInput = true;
-
+            bool isNumber = true;
+            int convertNumber;
             do
             {
-                int convertNumber;
                 Console.Write("Введите номер игрока:");
                 string userInput = Console.ReadLine();
-                correctlyInput = int.TryParse(userInput, out convertNumber);
-                return convertNumber;
+                isNumber = int.TryParse(userInput, out convertNumber);
             }
-            while (correctlyInput == false);
+            while (isNumber == false);
+            return convertNumber;
         }
     }
 

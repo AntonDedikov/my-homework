@@ -13,10 +13,12 @@ namespace Shop
             Trader trader = new Trader();
             Player player = new Player();
 
-            while (true)
+            bool isOpen = true;
+
+            while (isOpen)
             {
 
-                Console.SetCursorPosition(20, 10);
+                Console.SetCursorPosition(20, 15);
                 Console.WriteLine($"твоё золото - {player.Coins}");
                 Console.SetCursorPosition(1, 1);
 
@@ -30,17 +32,17 @@ namespace Shop
                     case ConsoleKey.NumPad1:
                         trader.ShowProduct();
 
-                        Console.WriteLine(" Что желаете купить?");
-                        int UserNumber = GetNumber();
-                        if (UserNumber > 0)
+                        Console.WriteLine("\n Что желаете купить?");
+                        int userNumber = GetNumber();
+                        if (userNumber > 0)
                         {
-                            UserNumber--;
-                            if (trader.CheckItemsIdexInList(UserNumber))
+                            userNumber -= 1;
+                            if (trader.ItemIsPresent(userNumber))
                             {
-                                if (player.CheckSolvency(trader.GetPrice(UserNumber)))
+                                if (player.Coins >= trader.GetPrice(userNumber))
                                 {
-                                    trader.TakeCoins(player.Pay());
-                                    player.AddInventory(trader.GiveItem(UserNumber));
+                                    int price = trader.GetPrice(userNumber);
+                                    player.BuyItem(price, trader.SellItem(userNumber));
                                     Console.ReadKey();
                                 }
                                 else
@@ -89,13 +91,14 @@ namespace Shop
             _items.Add(new Item("Деревянный лук", 20));
             _items.Add(new Item("Кожаный доспех", 50));
             _items.Add(new Item("Зелье исцеления", 15));
+            _items.Add(new Item("Зелье бодрости", 10));
         }
 
         public void ShowProduct()
         {
             for (int i = 0; i < _items.Count; i++)
             {
-                Console.WriteLine($"  {i+1} {_items[i].Label} - {_items[i].Price}");
+                Console.WriteLine($"  {i + 1} {_items[i].Label} - {_items[i].Price}");
             }
         }
 
@@ -104,25 +107,14 @@ namespace Shop
             return _items[userNumber].Price;
         }
 
-        public bool CheckItemsIdexInList(int userNumber)
+        public bool ItemIsPresent(int userNumber)
         {
-            if (userNumber >= 0 && userNumber < _items.Count)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return userNumber >= 0 && userNumber < _items.Count;
         }
 
-        public void TakeCoins(int playerCoins)
+        public Item SellItem(int userNumber)
         {
-            _coins += playerCoins;
-        }
-
-        public Item GiveItem(int userNumber)
-        {
+            _coins += _items[userNumber].Price;
             Item temp = _items[userNumber];
             _items.RemoveAt(userNumber);
             Console.WriteLine($"Торговец передал вам {temp.Label}");
@@ -145,41 +137,22 @@ namespace Shop
     class Player
     {
         public int Coins { get; private set; } = 20;
-        private int _coinsToPay;
 
-        private List<Item> _playerInventory = new List<Item>();
+        private List<Item> _inventory = new List<Item>();
 
         public void ShowInventory()
         {
-            foreach (Item item in _playerInventory)
+            foreach (Item item in _inventory)
             {
                 Console.WriteLine(item.Label);
+                Console.ReadKey();
             }
         }
 
-        public void AddInventory(Item temp)
+        public void BuyItem(int price, Item temp)
         {
-            _playerInventory.Add(temp);
-        }
-
-        public bool CheckSolvency(int price)
-        {
-            _coinsToPay = price;
-            if (Coins >= _coinsToPay)
-            {
-                return true;
-            }
-            else
-            {
-                _coinsToPay = 0;
-                return false;
-            }
-        }
-
-        public int Pay()
-        {
-            Coins -= _coinsToPay;
-            return _coinsToPay;
+            _inventory.Add(temp);
+            Coins -= price;
         }
     }
 }
