@@ -62,7 +62,7 @@ namespace Shop
             if (userNumber > 0)
             {
                 userNumber -= 1;
-                if (trader.ItemIsPresent(userNumber))
+                if (trader.IsPresent(userNumber))
                 {
                     if (player.Coins >= trader.GetPrice(userNumber))
                     {
@@ -116,7 +116,7 @@ namespace Shop
             return _items[userNumber].Price;
         }
 
-        public bool ItemIsPresent(int userNumber)
+        public bool IsPresent(int userNumber)
         {
             return userNumber >= 0 && userNumber < _items.Count;
         }
