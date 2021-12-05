@@ -10,10 +10,9 @@ namespace Shop
     {
         static void Main(string[] args)
         {
+            bool isOpen = true;
             Trader trader = new Trader();
             Player player = new Player();
-
-            bool isOpen = true;
 
             while (isOpen)
             {
@@ -31,36 +30,12 @@ namespace Shop
                 {
                     case ConsoleKey.NumPad1:
                         trader.ShowProduct();
-
-                        Console.WriteLine("\n Что желаете купить?");
-                        int userNumber = GetNumber();
-                        if (userNumber > 0)
+                        Console.WriteLine($"\n Желаете что-то купить?" +
+                            $"\n (Нажмите <<Enter>> для того чтобы начать торговлю)");
+                        key = Console.ReadKey();
+                        if (key.Key == ConsoleKey.Enter)
                         {
-                            userNumber -= 1;
-                            if (trader.ItemIsPresent(userNumber))
-                            {
-                                if (player.Coins >= trader.GetPrice(userNumber))
-                                {
-                                    int price = trader.GetPrice(userNumber);
-                                    player.BuyItem(price, trader.SellItem(userNumber));
-                                    Console.ReadKey();
-                                }
-                                else
-                                {
-                                    Console.WriteLine("У вас нехватает монет");
-                                    Console.ReadKey();
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Такого предмета нет в лавке");
-                                Console.ReadKey();
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Торговец не знает такого языка");
-                            Console.ReadKey();
+                            Trade(trader, player);
                         }
                         break;
                     case ConsoleKey.NumPad2:
@@ -78,6 +53,40 @@ namespace Shop
             string userInput = Console.ReadLine();
             correctlyInput = int.TryParse(userInput, out convertNumber);
             return convertNumber;
+        }
+
+        static void Trade(Trader trader, Player player)
+        {
+            Console.WriteLine("Какая вещь вам приглянулась?");
+            int userNumber = GetNumber();
+            if (userNumber > 0)
+            {
+                userNumber -= 1;
+                if (trader.ItemIsPresent(userNumber))
+                {
+                    if (player.Coins >= trader.GetPrice(userNumber))
+                    {
+                        int price = trader.GetPrice(userNumber);
+                        player.BuyItem(price, trader.SellItem(userNumber));
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine("У вас нехватает монет");
+                        Console.ReadKey();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Такого предмета нет в лавке");
+                    Console.ReadKey();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Торговец не знает такого языка");
+                Console.ReadKey();
+            }
         }
     }
 
@@ -136,9 +145,8 @@ namespace Shop
 
     class Player
     {
-        public int Coins { get; private set; } = 20;
-
         private List<Item> _inventory = new List<Item>();
+        public int Coins { get; private set; } = 20;
 
         public void ShowInventory()
         {
